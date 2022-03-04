@@ -7,7 +7,7 @@
 body, html {
     font-family: system-ui;
     height: 100%;
-    background-color: black;
+    background-color: #151515;
 }
 
 .container {
@@ -56,7 +56,7 @@ input {
 .btn {
     width: 200px;
     height: 50px;
-    background-color: black;
+    background-color: #151515;
     color: white;
     font-family: system-ui;
     font-weight: 700;
@@ -104,5 +104,61 @@ input {
 
     .btn {
         width: 85px;
+    }
+}
+
+@media(min-width: 375px) {
+    .container {
+        width: 350px;
+    }
+
+    .btn {
+        width: 100px;
+    }
+}
+
+@media(min-width: 768px) {
+    .container {
+        width: 600px;
+    }
+
+    .btn-box {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        width: 180px;
+    }
+
+    .animate-start-translate {
+        transform: translateY(10px);
+        /* border: 3px solid #b8a3a3; */
+        border-radius: 5px;
+    }
+    
+    .animate-end {
+        transform: scale(1);
+    }
+}
+
+@media(min-width: 1024px) {
+    .container {
+        width: 700px;
+        padding: 20px;
+    }
+
+    .btn {
+        width: 200px;
+    }
+}
+
+@media(min-width: 1440px) {
+    .container {
+        width: 1100px;
+        padding: 40px;
+    }
+
+    .btn {
+        width: 320px;
     }
 }
