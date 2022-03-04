@@ -45,7 +45,7 @@ input {
 
 .space {
     display: inline-block;
- margin-right: 10px;
+    margin-right: 7px;
 }
 
 .btn-box {
@@ -86,8 +86,22 @@ input {
     flex-wrap: wrap;
 }
 
+.animate-start {
+    transform: scale(0.9);
+    border: 3px solid #b8a3a3;
+}
+
+.animate-end {
+    transform: scale(1);
+}
 
 
 @media(min-width: 300px) {
+    .container {
+        width: 300px;
+    }
 
+    .btn {
+        width: 85px;
+    }
 }
