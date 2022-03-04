@@ -14,9 +14,22 @@ body, html {
     width: 275px;
     margin: 0 auto;
     padding: 10px;
-    background-color: white;
     margin-top: 20px;
     border-radius: 5px;
+}
+
+.header-container {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-heading {
+    color: white;
+}
+
+.main-container {
+    background-color: white;
 }
 
 input {
@@ -84,6 +97,19 @@ input {
 .text {
     display: flex;
     flex-wrap: wrap;
+    transition: 0.1s;
+}
+
+.text-translateY-top {
+    transform: translateY(-6px);
+}
+
+.text-translateY-down {
+    transform: translateY(6px);
+}
+
+.text-translateY-start {
+    transform: translateY(0px);
 }
 
 .animate-start {
@@ -95,6 +121,34 @@ input {
 .animate-end {
     transform: scale(1);
 }
+
+.vk {
+    width: 50px;
+}
+
+.img-messager,
+.link-messager {
+    width: inherit;
+    height: inherit;
+}
+
+.box-messager {
+    position: relative;
+    width: 42px;
+    height: 42px;
+}
+
+.link-messager {
+    position:absolute;
+    left: 0;
+    top: 0;
+}
+
+.box-my-contacts {
+    display: flex;
+}
+
+
 
 
 @media(min-width: 300px) {
@@ -147,6 +201,10 @@ input {
         padding: 20px;
     }
 
+    .header-container {
+        padding: 0;
+    }
+
     .btn {
         width: 200px;
     }
@@ -156,6 +214,10 @@ input {
     .container {
         width: 1100px;
         padding: 40px;
+    }
+
+    .header-container {
+        padding: 0;
     }
 
     .btn {

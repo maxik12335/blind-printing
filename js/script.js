@@ -41,11 +41,11 @@ let objText = {
         'В роли подлежащего может выступать как одно слово, так и несколько.',
         'Dota — глубочайшая многопользовательская стратегия всех времён',
         'Власти обсудят общественные работы для помощи рынку труда',
-        'При создании стиля абзаца для задания атрибутов шрифта используются поле размер шрифта, кнопки «Ж» - жирный шрифт, «К» - курсив, «Ч» - подчёркивание.'
+        'При создании стиля абзаца для задания атрибутов шрифта используются поле размер шрифта, кнопки "Ж" - жирный шрифт, "К" - курсив, "Ч" - подчёркивание.'
     ],
     hard: [
         'I like to go to visual studio code and make up original websites',
-        'Многие писатели предпочитают излагать повествование в своих произведениях с помощью простых и коротких предложений. К ним относятся Чехов («краткость – сестра таланта»), Бабель, О. Генри и другие.',
+        'Многие писатели предпочитают излагать повествование в своих произведениях с помощью простых и коротких предложений. К ним относятся Чехов ("краткость – сестра таланта"), Бабель, О. Генри и другие.',
         'Сочинительная и бессоюзная связи: "Большие снежинки вначале медленно опустились на тротуар, а затем посыпались быстрее – метель началась".',
         '"Девушка ускорила шаг (1): состав, пыхтя, подъезжал к станции (2), и гудок паровоза это подтвердил (3)".',
         'Кузнечики – лапками по крыльям: на лапках у них зацепочки, а на крыльях зазубринки.',
@@ -81,6 +81,7 @@ function startInput() {
     setTimeout(animateBtn(btnMiddle, 900, 600), 0)
     setTimeout(animateBtn(btnHard, 1800, 600), 0)
 }
+
 function animateBtn(btn, start, end) {
     setTimeout(() => {
         if (document.documentElement.clientWidth >= 768) {
@@ -102,11 +103,39 @@ function animateBtn(btn, start, end) {
     }, start)
 }
 
-
-
 input.addEventListener('click', (event) => {
-    if (textStart.textContent == 'Выбери свой уровень нажав на кнопку выше') {
-        startInput()
+    if (textStart.textContent == 'Выбери свой уровень, нажав на кнопку выше') {
+
+        setTimeout(() => {
+            textStart.classList.add('text-translateY-top')
+            textStart.classList.remove('text-translateY-down')
+            textStart.classList.remove('text-translateY-start')
+            setTimeout(() => {
+                textStart.classList.remove('text-translateY-top')
+                textStart.classList.add('text-translateY-down')
+                setTimeout(() => {
+                    textStart.classList.add('text-translateY-top')
+                    textStart.classList.remove('text-translateY-down')
+                    textStart.classList.remove('text-translateY-start')
+                    setTimeout(() => {
+                        textStart.classList.remove('text-translateY-top')
+                        textStart.classList.add('text-translateY-down')
+                        setTimeout(() => {
+                            textStart.classList.add('text-translateY-top')
+                            textStart.classList.remove('text-translateY-down')
+                            textStart.classList.remove('text-translateY-start')
+                            setTimeout(() => {
+                                textStart.classList.remove('text-translateY-top')
+                                textStart.classList.add('text-translateY-down')
+                            }, 100)
+                            textStart.classList.add('text-translateY-start')
+                        }, 100)
+                    }, 100)
+                }, 100)
+            }, 100)
+        }, 300)
+
+        setTimeout(startInput, 1600)
     }
 })
 
