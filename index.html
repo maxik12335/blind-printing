@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Trenajor</title>
+</head>
+
+<body>
+    <!-- <header class="header">
+        <div class="container">Header</div>
+    </header> -->
+    <main class="main">
+        <div class="container">
+            <div class="btn-box">
+                <button class="btn-1 btn">Lite</button>
+                <button class="btn-2 btn">Middle</button>
+                <button class="btn-3 btn">Hard</button>
+            </div>
+            <div class="input-box">
+                <label for="text">Введите текст</label>
+                <input type="text" id="text" placeholder="Начинай" autocomplete="off">
+            </div>
+
+            <div class="text-box">
+                <p class="text">фыв</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+
+
+
+        let input = document.querySelector('input'),
+            textStart = document.querySelector('.text') // text
+
+
+        let objText = {
+            lite: 'Я люблю кодить в vsc и создавать сайты',
+            middle: 'Я люблю кодить в visual studio code и верстать оригинальные сайты',
+            hard: 'I like to go to visual studio code and make up original websites'
+        }
+
+        let btnLite = document.querySelector('.btn-1'),
+            btnMiddle = document.querySelector('.btn-2'),
+            btnHard = document.querySelector('.btn-3')
+
+        btnLite.addEventListener('click', () => {
+            textStart.textContent = objText.lite
+            createSpan()
+        })
+
+        btnMiddle.addEventListener('click', () => {
+            textStart.textContent = objText.middle
+            createSpan()
+        })
+
+        btnHard.addEventListener('click', () => {
+            textStart.textContent = objText.hard
+            createSpan()
+        })
+
+        // let mass = textStart.textContent.split(''), // text arr
+        //         textStartSave = textStart.textContent
+        //     textStart.innerHTML = '' // text null
+        //     input.maxLength = textStartSave.length
+
+
+
+        // function test() {
+        //     let mass = textStart.textContent.split('') // text arr
+
+        //     textStart.innerHTML = '' // text null
+        //     input.maxLength = textStart.textContent.length
+        //     createSpan()
+        // }
+
+        // work text ================================== 
+        let count = 0
+        // input.maxLength = textStartSave.length
+        input.addEventListener('input', (event) => {
+            if (input.value[input.value.length - 1] === textStart.children[input.value.length - 1].textContent) {
+                textColorBlue()
+                count++
+            } else {
+                input.value = input.value.slice(0, -1)
+                textStart.children[input.value.length].style.color = 'red'
+            }
+        })
+        input.addEventListener('keydown', (event) => {
+            if (event.code === 'Backspace') {
+                textColorRedDelete()
+                textColorNull()
+            }
+        })
+
+        function createSpan() {
+            let mass = textStart.textContent.split(''), // text arr
+                textStartSave = textStart.textContent
+            textStart.innerHTML = '' // text null
+            input.maxLength = textStartSave.length
+
+            for (let i = 0; i < textStartSave.length; i++) { // add span
+                textStart.innerHTML = textStart.innerHTML + `
+            <span>${mass[i]}</span>
+            `
+                if (mass[i] === ' ') {
+                    textStart.children[i].classList.add('space')
+                }
+            }
+        }
+
+        function textColorBlue() {
+            for (let i = 0; i < input.value.length; i++) {
+                textStart.children[i].style.color = 'blue'
+                console.log(i, 'input')
+            }
+        }
+
+        function textColorNull() {
+            for (let i = 0; i < input.value.length; i++) {
+                textStart.children[i].style.color = ''
+                console.log(i, 'key')
+            }
+        }
+
+        function textColorRedDelete() {
+            for (let i = 0; i < textStart.children.length; i++) {
+                if (textStart.children[i].style.color === 'red')
+                    textStart.children[i].style.color = ''
+            }
+        }
+
+    </script>
+    <!-- <footer class="footer">
+        <div class="container">Footer</div>
+    </footer> -->
+</body>
+
+</html>
