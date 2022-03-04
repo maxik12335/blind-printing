@@ -26,19 +26,21 @@
             </div>
 
             <div class="text-box">
-                <p class="text">фыв</p>
+                <p class="text">Выбери свой уровень нажав на кнопку выше</p>
             </div>
+
+
         </div>
     </main>
 
     <script>
 
-
-
-
         let input = document.querySelector('input'),
             textStart = document.querySelector('.text') // text
 
+        let objWay = {
+            end: 'Отлично ! Текст набран'
+        }
 
         let objText = {
             lite: 'Я люблю кодить в vsc и создавать сайты',
@@ -65,25 +67,16 @@
             createSpan()
         })
 
-        // let mass = textStart.textContent.split(''), // text arr
-        //         textStartSave = textStart.textContent
-        //     textStart.innerHTML = '' // text null
-        //     input.maxLength = textStartSave.length
-
-
-
-        // function test() {
-        //     let mass = textStart.textContent.split('') // text arr
-
-        //     textStart.innerHTML = '' // text null
-        //     input.maxLength = textStart.textContent.length
-        //     createSpan()
-        // }
-
         // work text ================================== 
         let count = 0
-        // input.maxLength = textStartSave.length
+
         input.addEventListener('input', (event) => {
+            if (input.value.length == textStart.children.length) {
+                input.value = ''
+                textStart.innerHTML = ''
+                showEnd()
+            }
+
             if (input.value[input.value.length - 1] === textStart.children[input.value.length - 1].textContent) {
                 textColorBlue()
                 count++
@@ -110,7 +103,7 @@
             <span>${mass[i]}</span>
             `
                 if (mass[i] === ' ') {
-                    textStart.children[i].classList.add('space')
+                    textStart.children[i - 1].classList.add('space')
                 }
             }
         }
@@ -136,6 +129,16 @@
             }
         }
 
+        function showEnd() {
+            let container = document.querySelector('.container')
+            let cont = document.createElement('div')
+            cont.classList.add('container')
+            container.after(cont)
+
+            let contDiv = document.createElement('div')
+            contDiv.textContent = objWay.end
+            cont.append(contDiv)
+        }
     </script>
     <!-- <footer class="footer">
         <div class="container">Footer</div>
