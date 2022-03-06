@@ -76,6 +76,13 @@ input {
     letter-spacing: 1.1px;
     border: none;
     transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.9);
+    -moz-box-shadow:    0px 0px 11px 0px rgba(50, 50, 50, 0.9);
+    box-shadow:         0px 0px 11px 0px rgba(50, 50, 50, 0.9);
 }
 
 .btn:active {
@@ -115,7 +122,6 @@ input {
 .animate-start {
     transform: scale(0.9);
     border: 3px solid #b8a3a3;
-    border-radius: 5px;
 }
 
 .animate-end {
@@ -148,8 +154,94 @@ input {
     display: flex;
 }
 
+.container-messenge-rules {
+    padding: 0;
+}
+
+.messenge-rules-text:first-child,
+.messenge-rules-text:nth-child(3) {
+    margin-bottom: 20px;
+}
 
 
+.messenge-rules-heading,
+.messenge-rules-text {
+    color: white;
+}
+
+.container-win {
+    border: 1px solid white;
+    padding: 20px;
+}
+
+.text-win {
+    color: white;
+    font-size: 20px;
+}
+
+.container-messenge-rules {
+    padding: 20px;
+    border: 1px solid white;
+}
+
+.messenge-rules-heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.messenge-rules-text:nth-child(2),
+.messenge-rules-text:nth-last-child(2) {
+    margin-bottom: 20px;
+}
+
+.messenge-btn-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messenge-btn {
+    width: 100%;
+    height: 50px;
+    background-color: #151515;
+    color: white;
+    border: 1px solid white;
+
+    font-family: system-ui;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.messenge-btn:hover {
+    -webkit-box-shadow: 0px 0px 11px 0px rgb(50 50 50 / 75%);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 20px 0px rgba(73, 73, 73, 0.945);
+}
+
+/* .container-messenge-rules {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messenge-rules-box {
+    width: 50%;
+}
+
+.messenge-rules-box:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messenge-rules-heading {
+    font-size: 50px;
+    margin-bottom: 0;
+} */
+
+.btn:focus-visible {
+    outline: none;
+}
 
 @media(min-width: 300px) {
     .container {
@@ -158,6 +250,16 @@ input {
 
     .btn {
         width: 85px;
+    }
+
+    .container-win {
+        border: 1px solid white;
+        padding: 20px;
+    }
+    
+    .text-win {
+        color: white;
+        font-size: 20px;
     }
 }
 
@@ -168,6 +270,16 @@ input {
 
     .btn {
         width: 100px;
+    }
+
+    .container-win {
+        border: 1px solid white;
+        padding: 20px;
+    }
+    
+    .text-win {
+        color: white;
+        font-size: 20px;
     }
 }
 
@@ -187,11 +299,24 @@ input {
     .animate-start-translate {
         transform: translateY(10px);
         /* border: 3px solid #b8a3a3; */
-        border-radius: 5px;
+        /* border-radius: 5px; */
+        -webkit-box-shadow: 0px 0px 9px 0px rgba(50, 50, 50, 0.9);
+-moz-box-shadow:    0px 0px 9px 0px rgba(50, 50, 50, 0.9);
+box-shadow:         0px 0px 9px 0px rgba(50, 50, 50, 0.9);
     }
     
     .animate-end {
         transform: scale(1);
+    }
+
+    .container-win {
+        border: 1px solid white;
+        padding: 20px;
+    }
+    
+    .text-win {
+        color: white;
+        font-size: 20px;
     }
 }
 
@@ -201,12 +326,27 @@ input {
         padding: 20px;
     }
 
-    .header-container {
+    .header-container,
+    .container-messenge-rules {
         padding: 0;
     }
 
     .btn {
         width: 200px;
+    }
+
+    .container-win {
+        border: 1px solid white;
+        padding: 20px;
+    }
+    
+    .text-win {
+        color: white;
+        font-size: 20px;
+    }
+
+    .container-messenge-rules {
+        padding: 20px;
     }
 }
 
@@ -216,11 +356,55 @@ input {
         padding: 40px;
     }
 
-    .header-container {
+    .header-container,
+    .container-messenge-rules {
         padding: 0;
     }
 
     .btn {
         width: 320px;
     }
+
+    .container-win {
+        border: 1px solid white;
+        padding: 20px;
+    }
+    
+    .text-win {
+        color: white;
+        font-size: 20px;
+    }
+
+    .container-messenge-rules {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px;
+    }
+    
+    .messenge-rules-box {
+        width: 50%;
+    }
+
+    .messenge-rules-box:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .messenge-rules-box-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 50px;
+        border-right: 1px solid white;
+    }
+    
+    .messenge-rules-heading {
+        font-size: 50px;
+        margin-bottom: 0;
+        margin-right: 75px;
+    }
+    
 }
