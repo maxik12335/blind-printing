@@ -54,6 +54,7 @@ input {
 
 .input-box input:focus-visible {
     outline: none;
+    border: none;
 }
 
 .space {
