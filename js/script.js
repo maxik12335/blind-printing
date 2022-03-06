@@ -1,3 +1,6 @@
+//  zoom mobyle input disable
+
+
 let main = document.querySelector('.main'),
     logo = document.querySelector('.header-heading')
 // main page
@@ -543,3 +546,14 @@ document.querySelector('.messenge-btn').addEventListener('click', () => {
         }
     }
 })
+
+
+$("input[type=text], textarea").mouseover(zoomDisable).mousedown(zoomEnable);
+function zoomDisable() {
+    $('head meta[name=viewport]').remove();
+    $('head').prepend('<meta name="viewport" content="user-scalable=0" />');
+}
+function zoomEnable() {
+    $('head meta[name=viewport]').remove();
+    $('head').prepend('<meta name="viewport" content="user-scalable=1" />');
+}
