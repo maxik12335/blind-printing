@@ -1,10 +1,3 @@
-document.addEventListener('touchmove', function (event) {
-    event = event.originalEvent || event;
-    if (event.scale !== 1) {
-        event.preventDefault();
-    }
-}, false);
-
 let main = document.querySelector('.main'),
     logo = document.querySelector('.header-heading')
 // main page
