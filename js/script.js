@@ -1,11 +1,8 @@
-//  zoom mobyle input disable
-
-
 let main = document.querySelector('.main'),
     logo = document.querySelector('.header-heading'),
-    btnPage = document.querySelector('.messenge-btn'),
+    btnPage,
     mainText = `
-        <div class="messenge-rules-box">
+<div class="messenge-rules-box">
             <div class="messenge-rules-box-container">
                 <h2 class="messenge-rules-heading">BlindP</h2>
             </div>
@@ -51,25 +48,19 @@ let main = document.querySelector('.main'),
 </div>
 `
 
-// start
+// start ---------
 mainRender()
 
+// addEventListener ---------
 
-// addEventListener
-btnPage.addEventListener('click', () => {
-    gymRender()
-    animate()
-})
+btnAddEventListener()
 
 logo.addEventListener('click', () => {
     mainRender()
-    btnPage.addEventListener('click', () => {
-        gymRender()
-        animate()
-    })
+    btnAddEventListener()
 })
 
-// function
+// function ---------
 function mainRender() {
     if (document.querySelector('.main-container')) {
         document.querySelector('.main-container').remove()
@@ -94,13 +85,19 @@ function gymRender() {
     cont.innerHTML = gymContent
 }
 
+function btnAddEventListener() {
+    btnPage.addEventListener('click', () => {
+        gymRender()
+        animate()
+    })
+}
+
 function animate() {
     if (document.querySelector('.main-container')) {
 
         let input = document.querySelector('input'),
             textStart = document.querySelector('.text'), // text
-            textStartLvl = 'Выбери свой уровень, нажав на кнопку выше',
-            container = document.querySelectorAll('.container')
+            textStartLvl = 'Выбери свой уровень, нажав на кнопку выше'
 
         let objWay = {
             end: 'Отлично ! Текст набран'
@@ -156,26 +153,128 @@ function animate() {
 
         let btnLite = document.querySelector('.btn-1'),
             btnMiddle = document.querySelector('.btn-2'),
-            btnHard = document.querySelector('.btn-3')
+            btnHard = document.querySelector('.btn-3'),
+            btnBox = document.querySelector('.btn-box')
 
-        btnLite.addEventListener('click', () => {
-            textStart.textContent = objText.lite[Math.round(Math.random(0, objText.lite.length - 1) * objText.lite.length - 1)]
-            createSpan()
-        })
 
-        btnMiddle.addEventListener('click', () => {
-            textStart.textContent = objText.middle[Math.round(Math.random(0, objText.middle.length - 1) * objText.middle.length - 1)]
-            createSpan()
-        })
-
-        btnHard.addEventListener('click', () => {
-            textStart.textContent = objText.hard[Math.round(Math.random(0, objText.hard.length - 1) * objText.hard.length - 1)]
-            createSpan()
-        })
 
         // work text ================================== 
-        let count = 0
         input.maxLength = 0
+
+        // addEventListener input
+        input.addEventListener('click', () => {
+            $.mobile.zoom.enable();
+            if (textStart.textContent == textStartLvl) {
+
+                const animateTextPromise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        textStart.classList.add('text-translateY-top')
+                        textStart.classList.remove('text-translateY-down')
+                        textStart.classList.remove('text-translateY-start')
+                        resolve()
+                    }, 300)
+                })
+
+                animateTextPromise.then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            textStart.classList.remove('text-translateY-top')
+                            textStart.classList.add('text-translateY-down')
+                            resolve()
+                        }, 100)
+                    })
+                }).then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            textStart.classList.add('text-translateY-top')
+                            textStart.classList.remove('text-translateY-down')
+                            textStart.classList.remove('text-translateY-start')
+                            resolve()
+                        }, 100)
+                    })
+                }).then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            textStart.classList.remove('text-translateY-top')
+                            textStart.classList.add('text-translateY-down')
+                            resolve()
+                        }, 100)
+                    })
+                }).then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            textStart.classList.add('text-translateY-top')
+                            textStart.classList.remove('text-translateY-down')
+                            textStart.classList.remove('text-translateY-start')
+                            resolve()
+                        }, 100)
+                    })
+                }).then(() => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            textStart.classList.add('text-translateY-start')
+                            textStart.classList.remove('text-translateY-top')
+                            resolve()
+                        }, 100)
+                    })
+                })
+
+                // setTimeout(() => {
+                //     textStart.classList.add('text-translateY-top')
+                //     textStart.classList.remove('text-translateY-down')
+                //     textStart.classList.remove('text-translateY-start')
+                //     setTimeout(() => {
+                //         textStart.classList.remove('text-translateY-top')
+                //         textStart.classList.add('text-translateY-down')
+                //         setTimeout(() => {
+                //             textStart.classList.add('text-translateY-top')
+                //             textStart.classList.remove('text-translateY-down')
+                //             textStart.classList.remove('text-translateY-start')
+                //             setTimeout(() => {
+                //                 textStart.classList.remove('text-translateY-top')
+                //                 textStart.classList.add('text-translateY-down')
+                //                 setTimeout(() => {
+                //                     textStart.classList.add('text-translateY-top')
+                //                     textStart.classList.remove('text-translateY-down')
+                //                     textStart.classList.remove('text-translateY-start')
+                //                     setTimeout(() => {
+                //                         textStart.classList.remove('text-translateY-top')
+                //                         textStart.classList.add('text-translateY-down')
+                //                     }, 100)
+                //                     textStart.classList.add('text-translateY-start')
+                //                 }, 100)
+                //             }, 100)
+                //         }, 100)
+                //     }, 100)
+                // }, 300) // 300
+
+                setTimeout(startInput, 1600)
+            }
+        })
+
+        input.addEventListener('input', () => {
+            addEventListenerKeydown()
+            if (input.value.length == textStart.children.length && input.value != '') {
+                showEnd()
+            }
+
+            if (input.value[input.value.length - 1] === textStart.children[input.value.length - 1].textContent) {
+                changeTextColor.blue()
+            } else {
+                changeTextColor.red()
+            }
+        })
+
+        // addEventListener btn 
+        btnBox.addEventListener('click', (event) => {
+            if (event.target === btnLite)
+                createSpan(objText.lite)
+            else if (event.target === btnMiddle)
+                createSpan(objText.middle)
+            else if (event.target === btnHard)
+                createSpan(objText.hard)
+        })
+        // function
         function startInput() {
             setTimeout(animateBtn(btnLite, 0, 600), 0)
             setTimeout(animateBtn(btnMiddle, 900, 600), 0)
@@ -203,85 +302,20 @@ function animate() {
             }, start)
         }
 
-        input.addEventListener('click', (event) => {
-            if (textStart.textContent == textStartLvl) {
+        function createSpan(btnLvl) {
+            textStart.textContent = btnLvl[Math.round(Math.random(0, btnLvl.length - 1) * btnLvl.length - 1)]
 
-                setTimeout(() => {
-                    textStart.classList.add('text-translateY-top')
-                    textStart.classList.remove('text-translateY-down')
-                    textStart.classList.remove('text-translateY-start')
-                    setTimeout(() => {
-                        textStart.classList.remove('text-translateY-top')
-                        textStart.classList.add('text-translateY-down')
-                        setTimeout(() => {
-                            textStart.classList.add('text-translateY-top')
-                            textStart.classList.remove('text-translateY-down')
-                            textStart.classList.remove('text-translateY-start')
-                            setTimeout(() => {
-                                textStart.classList.remove('text-translateY-top')
-                                textStart.classList.add('text-translateY-down')
-                                setTimeout(() => {
-                                    textStart.classList.add('text-translateY-top')
-                                    textStart.classList.remove('text-translateY-down')
-                                    textStart.classList.remove('text-translateY-start')
-                                    setTimeout(() => {
-                                        textStart.classList.remove('text-translateY-top')
-                                        textStart.classList.add('text-translateY-down')
-                                    }, 100)
-                                    textStart.classList.add('text-translateY-start')
-                                }, 100)
-                            }, 100)
-                        }, 100)
-                    }, 100)
-                }, 300) // 300
-
-                setTimeout(startInput, 1600)
-            }
-        })
-
-        input.addEventListener('input', (event) => {
-            if (input.value.length == textStart.children.length && input.value != '') {
-                input.value = ''
-                textStart.innerHTML = ''
-                showEnd()
-            }
-
-            if (input.value[input.value.length - 1] === textStart.children[input.value.length - 1].textContent) {
-                textColorBlue()
-                count++
-            } else {
-                input.value = input.value.slice(0, -1)
-                textStart.children[input.value.length].style.color = 'red'
-            }
-        })
-
-        input.addEventListener('keydown', (event) => {
-            if (event.code === 'Backspace') {
-                textColorRedDelete()
-                textColorNull()
-            }
-        })
-
-        function createSpan() {
-            let mass = textStart.textContent.split(''), // text arr
-                textStartSave = textStart.textContent
+            let arrayNewText = textStart.textContent.split(''), // text arr
+                newText = textStart.textContent
             textStart.innerHTML = '' // text null
-            input.maxLength = textStartSave.length
+            input.maxLength = newText.length
 
-            for (let i = 0; i < textStartSave.length; i++) { // add span
-                textStart.innerHTML = textStart.innerHTML + `
-<span>${mass[i]}</span>
-`
-                if (mass[i] === ' ') {
+            for (let i = 0; i < newText.length; i++) { // add span
+                textStart.innerHTML = textStart.innerHTML + `<span>${arrayNewText[i]}</span>`
+
+                if (arrayNewText[i] === ' ') {
                     textStart.children[i - 1].classList.add('space')
                 }
-            }
-        }
-
-        function textColorBlue() {
-            for (let i = 0; i < input.value.length; i++) {
-                textStart.children[i].style.color = 'blue'
-                console.log(i, 'input')
             }
         }
 
@@ -300,31 +334,64 @@ function animate() {
         }
 
         function showEnd() {
-            let container = document.querySelectorAll('.container')
-            let cont = document.createElement('div')
-            cont.classList.add('container')
-            cont.classList.add('container-win')
-            container[1].after(cont)
+            input.value = ''
+            textStart.innerHTML = ''
 
-            let contDiv = document.createElement('div')
-            contDiv.textContent = objWay.end
-            contDiv.classList.add('text-win')
-            cont.append(contDiv)
+            let main = document.querySelector('.main')
+            let container = document.createElement('div')
+            container.classList.add('container')
+            container.classList.add('container-win')
+            main.append(container)
+
+            let p = document.createElement('p')
+            p.textContent = objWay.end
+            p.classList.add('text-win')
+            container.append(p)
             input.maxLength = 0
             setTimeout(() => {
-                cont.remove()
+                container.remove()
                 textStart.textContent = textStartLvl
             }, 3000)
         }
+
+        function addEventListenerKeydown() {
+            input.addEventListener('keydown', (event) => {
+                if (event.code === 'Backspace') {
+                    textColorRedDelete()
+                    textColorNull()
+                }
+            })
+        }
+
+        const changeTextColor = {
+            blue: () => {
+                for (let i = 0; i < input.value.length; i++) {
+                    textStart.children[i].style.color = 'blue'
+                }
+            },
+            red: () => {
+                input.value = input.value.slice(0, -1)
+                textStart.children[input.value.length].style.color = 'red'
+            }
+
+            // Заменил object на function, что внизу (можно удалить)
+            // function textColorRed() {
+            //     input.value = input.value.slice(0, -1)
+            //     textStart.children[input.value.length].style.color = 'red'
+            // }
+
+            // function textColorBlue() {
+            //     for (let i = 0; i < input.value.length; i++) {
+            //         textStart.children[i].style.color = 'blue'
+            //     }
+            // }
+        }
     }
+
 }
 
-// btnPage.addEventListener('click', () => {
-//     animate()
-// })
-
-// зум input
-$.mobile.zoom.enable();
+//  jQuery zoom
+// $.mobile.zoom.enable();
 
 // $("input[type=text], textarea").mouseover(zoomDisable).mousedown(zoomEnable);
 // function zoomDisable() {
