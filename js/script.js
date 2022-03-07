@@ -161,10 +161,6 @@ function animate() {
 
         // addEventListener input
         input.addEventListener('click', () => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e5119e432a64057771cbcaf67ca3f5076c4cf29
             if (textStart.textContent == textStartLvl) {
 
                 const animateTextPromise = new Promise((resolve, reject) => {
@@ -256,7 +252,6 @@ function animate() {
 
         input.addEventListener('input', () => {
             keydown.addEventListenerKeydown()
-
             if (input.value.length == textStart.children.length && input.value != '') {
                 showEnd()
             }
