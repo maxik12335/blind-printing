@@ -156,14 +156,11 @@ function animate() {
             btnHard = document.querySelector('.btn-3'),
             btnBox = document.querySelector('.btn-box')
 
-
-
         // work text ================================== 
         input.maxLength = 0
 
         // addEventListener input
         input.addEventListener('click', () => {
-            $.mobile.zoom.enable();
             if (textStart.textContent == textStartLvl) {
 
                 const animateTextPromise = new Promise((resolve, reject) => {
@@ -249,11 +246,12 @@ function animate() {
                 // }, 300) // 300
 
                 setTimeout(startInput, 1600)
+                $.mobile.zoom.enable();
             }
         })
 
         input.addEventListener('input', () => {
-            addEventListenerKeydown()
+            keydown.addEventListenerKeydown()
             if (input.value.length == textStart.children.length && input.value != '') {
                 showEnd()
             }
@@ -319,20 +317,6 @@ function animate() {
             }
         }
 
-        function textColorNull() {
-            for (let i = 0; i < input.value.length; i++) {
-                textStart.children[i].style.color = ''
-                console.log(i, 'key')
-            }
-        }
-
-        function textColorRedDelete() {
-            for (let i = 0; i < textStart.children.length; i++) {
-                if (textStart.children[i].style.color === 'red')
-                    textStart.children[i].style.color = ''
-            }
-        }
-
         function showEnd() {
             input.value = ''
             textStart.innerHTML = ''
@@ -354,15 +338,64 @@ function animate() {
             }, 3000)
         }
 
-        function addEventListenerKeydown() {
-            input.addEventListener('keydown', (event) => {
-                if (event.code === 'Backspace') {
-                    textColorRedDelete()
-                    textColorNull()
-                }
-            })
-        }
 
+        // keydown
+        // function textColorNull() {
+        //     for (let i = 0; i < input.value.length; i++) {
+        //         textStart.children[i].style.color = ''
+        //         console.log(i, 'key')
+        //     }
+        // }
+
+        // function textColorRedDelete() {
+        //     for (let i = 0; i < textStart.children.length; i++) {
+        //         if (textStart.children[i].style.color === 'red')
+        //             textStart.children[i].style.color = ''
+        //     }
+        // }
+
+        // function addEventListenerKeydown() {
+        //     input.addEventListener('keydown', (event) => {
+        //         if (event.code === 'Backspace') {
+        //             textColorRedDelete()
+        //             textColorNull()
+        //         }
+        //     })
+        // }
+        const keydown = {
+            addEventListenerKeydown: () => {
+                input.addEventListener('keydown', (event) => {
+                    if (event.code === 'Backspace') {
+                        keydown.textColorRedDelete()
+                        keydown.textColorNull()
+                    }
+                })
+            },
+            textColorNull: () => {
+                for (let i = 0; i < input.value.length; i++) {
+                    textStart.children[i].style.color = ''
+                }
+            },
+            textColorRedDelete: () => {
+                for (let i = 0; i < textStart.children.length; i++) {
+                    if (textStart.children[i].style.color === 'red')
+                        textStart.children[i].style.color = ''
+                }
+            }
+
+        }
+        // changeTextColor 
+        // Заменил object на function, что внизу (можно удалить)
+        // function textColorRed() {
+        //     input.value = input.value.slice(0, -1)
+        //     textStart.children[input.value.length].style.color = 'red'
+        // }
+
+        // function textColorBlue() {
+        //     for (let i = 0; i < input.value.length; i++) {
+        //         textStart.children[i].style.color = 'blue'
+        //     }
+        // }
         const changeTextColor = {
             blue: () => {
                 for (let i = 0; i < input.value.length; i++) {
@@ -373,18 +406,6 @@ function animate() {
                 input.value = input.value.slice(0, -1)
                 textStart.children[input.value.length].style.color = 'red'
             }
-
-            // Заменил object на function, что внизу (можно удалить)
-            // function textColorRed() {
-            //     input.value = input.value.slice(0, -1)
-            //     textStart.children[input.value.length].style.color = 'red'
-            // }
-
-            // function textColorBlue() {
-            //     for (let i = 0; i < input.value.length; i++) {
-            //         textStart.children[i].style.color = 'blue'
-            //     }
-            // }
         }
     }
 
