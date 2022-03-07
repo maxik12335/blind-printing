@@ -163,7 +163,7 @@ function animate() {
 
         // addEventListener input
         input.addEventListener('click', () => {
-            $.mobile.zoom.enable();
+
             if (textStart.textContent == textStartLvl) {
 
                 const animateTextPromise = new Promise((resolve, reject) => {
@@ -249,11 +249,13 @@ function animate() {
                 // }, 300) // 300
 
                 setTimeout(startInput, 1600)
+                $.mobile.zoom.enable();
             }
         })
 
         input.addEventListener('input', () => {
             addEventListenerKeydown()
+
             if (input.value.length == textStart.children.length && input.value != '') {
                 showEnd()
             }
@@ -322,7 +324,6 @@ function animate() {
         function textColorNull() {
             for (let i = 0; i < input.value.length; i++) {
                 textStart.children[i].style.color = ''
-                console.log(i, 'key')
             }
         }
 
@@ -363,6 +364,7 @@ function animate() {
             })
         }
 
+
         const changeTextColor = {
             blue: () => {
                 for (let i = 0; i < input.value.length; i++) {
@@ -386,6 +388,8 @@ function animate() {
             //     }
             // }
         }
+
+
     }
 
 }
