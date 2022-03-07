@@ -52,7 +52,6 @@ let main = document.querySelector('.main'),
 mainRender()
 
 // addEventListener ---------
-
 btnAddEventListener()
 
 logo.addEventListener('click', () => {
