@@ -156,7 +156,7 @@ function animate() {
             btnHard = document.querySelector('.btn-3'),
             btnBox = document.querySelector('.btn-box')
 
-        // work text ================================== 
+        // work text ================================= 
         input.maxLength = 0
 
         // addEventListener input
