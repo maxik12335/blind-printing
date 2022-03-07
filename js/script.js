@@ -103,6 +103,7 @@ function animate() {
             end: 'Отлично ! Текст набран'
         }
 
+        // Levels: lite, middle, hard
         let objText = {
             lite: [
                 'Я люблю писать',
@@ -245,7 +246,7 @@ function animate() {
                 //     }, 100)
                 // }, 300) // 300
 
-                setTimeout(startInput, 1600)
+                setTimeout(othersFunction.startInput, 1600)
                 $.mobile.zoom.enable();
             }
         })
@@ -253,7 +254,7 @@ function animate() {
         input.addEventListener('input', () => {
             keydown.addEventListenerKeydown()
             if (input.value.length == textStart.children.length && input.value != '') {
-                showEnd()
+                othersFunction.showEnd()
             }
 
             if (input.value[input.value.length - 1] === textStart.children[input.value.length - 1].textContent) {
@@ -266,92 +267,145 @@ function animate() {
         // addEventListener btn 
         btnBox.addEventListener('click', (event) => {
             if (event.target === btnLite)
-                createSpan(objText.lite)
+                othersFunction.createSpan(objText.lite)
             else if (event.target === btnMiddle)
-                createSpan(objText.middle)
+                othersFunction.createSpan(objText.middle)
             else if (event.target === btnHard)
-                createSpan(objText.hard)
+                othersFunction.createSpan(objText.hard)
         })
-        // function
-        function startInput() {
-            setTimeout(animateBtn(btnLite, 0, 600), 0)
-            setTimeout(animateBtn(btnMiddle, 900, 600), 0)
-            setTimeout(animateBtn(btnHard, 1800, 600), 0)
-        }
 
-        function animateBtn(btn, start, end) {
-            setTimeout(() => {
-                if (document.documentElement.clientWidth >= 768) {
-                    btn.classList.remove('animate-end')
-                    btn.classList.add('animate-start-translate')
-                } else {
-                    btn.classList.add('animate-start')
-                    btn.classList.remove('animate-end')
-                }
+        // function
+        // function startInput() {
+        //     setTimeout(animateBtn(btnLite, 0, 600), 0)
+        //     setTimeout(animateBtn(btnMiddle, 900, 600), 0)
+        //     setTimeout(animateBtn(btnHard, 1800, 600), 0)
+        // }
+
+        // function animateBtn(btn, start, end) {
+        //     setTimeout(() => {
+        //         if (document.documentElement.clientWidth >= 768) {
+        //             btn.classList.remove('animate-end')
+        //             btn.classList.add('animate-start-translate')
+        //         } else {
+        //             btn.classList.add('animate-start')
+        //             btn.classList.remove('animate-end')
+        //         }
+        //         setTimeout(() => {
+        //             if (document.documentElement.clientWidth >= 768) {
+        //                 btn.classList.remove('animate-start')
+        //                 btn.classList.remove('animate-start-translate')
+        //             } else {
+        //                 btn.classList.remove('animate-start')
+        //                 btn.classList.add('animate-end')
+        //             }
+        //         }, end)
+        //     }, start)
+        // }
+
+        // function createSpan(btnLvl) {
+        //     textStart.textContent = btnLvl[Math.round(Math.random(0, btnLvl.length - 1) * btnLvl.length - 1)]
+
+        //     let arrayNewText = textStart.textContent.split(''), // text arr
+        //         newText = textStart.textContent
+        //     textStart.innerHTML = '' // text null
+        //     input.maxLength = newText.length
+
+        //     for (let i = 0; i < newText.length; i++) { // add span
+        //         textStart.innerHTML = textStart.innerHTML + `<span>${arrayNewText[i]}</span>`
+
+        //         if (arrayNewText[i] === ' ') {
+        //             textStart.children[i - 1].classList.add('space')
+        //         }
+        //     }
+        // }
+
+        // function showEnd() {
+        //     input.value = ''
+        //     textStart.innerHTML = ''
+
+        //     let main = document.querySelector('.main')
+        //     let container = document.createElement('div')
+        //     container.classList.add('container')
+        //     container.classList.add('container-win')
+        //     main.append(container)
+
+        //     let p = document.createElement('p')
+        //     p.textContent = objWay.end
+        //     p.classList.add('text-win')
+        //     container.append(p)
+        //     input.maxLength = 0
+        //     setTimeout(() => {
+        //         container.remove()
+        //         textStart.textContent = textStartLvl
+        //     }, 3000)
+        // }
+        const othersFunction = {
+            startInput: () => {
+                setTimeout(othersFunction.animateBtn(btnLite, 0, 600), 0)
+                setTimeout(othersFunction.animateBtn(btnMiddle, 900, 600), 0)
+                setTimeout(othersFunction.animateBtn(btnHard, 1800, 600), 0)
+            },
+
+            animateBtn: (btn, start, end) => {
                 setTimeout(() => {
                     if (document.documentElement.clientWidth >= 768) {
-                        btn.classList.remove('animate-start')
-                        btn.classList.remove('animate-start-translate')
+                        btn.classList.remove('animate-end')
+                        btn.classList.add('animate-start-translate')
                     } else {
-                        btn.classList.remove('animate-start')
-                        btn.classList.add('animate-end')
+                        btn.classList.add('animate-start')
+                        btn.classList.remove('animate-end')
                     }
-                }, end)
-            }, start)
-        }
+                    setTimeout(() => {
+                        if (document.documentElement.clientWidth >= 768) {
+                            btn.classList.remove('animate-start')
+                            btn.classList.remove('animate-start-translate')
+                        } else {
+                            btn.classList.remove('animate-start')
+                            btn.classList.add('animate-end')
+                        }
+                    }, end)
+                }, start)
+            },
 
-        function createSpan(btnLvl) {
-            textStart.textContent = btnLvl[Math.round(Math.random(0, btnLvl.length - 1) * btnLvl.length - 1)]
+            createSpan: (btnLvl) => {
+                textStart.textContent = btnLvl[Math.round(Math.random(0, btnLvl.length - 1) * btnLvl.length - 1)]
 
-            let arrayNewText = textStart.textContent.split(''), // text arr
-                newText = textStart.textContent
-            textStart.innerHTML = '' // text null
-            input.maxLength = newText.length
+                let arrayNewText = textStart.textContent.split(''), // text arr
+                    newText = textStart.textContent
+                textStart.innerHTML = '' // text null
+                input.maxLength = newText.length
 
-            for (let i = 0; i < newText.length; i++) { // add span
-                textStart.innerHTML = textStart.innerHTML + `<span>${arrayNewText[i]}</span>`
+                for (let i = 0; i < newText.length; i++) { // add span
+                    textStart.innerHTML = textStart.innerHTML + `<span>${arrayNewText[i]}</span>`
 
-                if (arrayNewText[i] === ' ') {
-                    textStart.children[i - 1].classList.add('space')
+                    if (arrayNewText[i] === ' ') {
+                        textStart.children[i - 1].classList.add('space')
+                    }
                 }
+            },
+
+            showEnd: () => {
+                input.value = ''
+                textStart.innerHTML = ''
+
+                let main = document.querySelector('.main')
+                let container = document.createElement('div')
+                container.classList.add('container')
+                container.classList.add('container-win')
+                main.append(container)
+
+                let p = document.createElement('p')
+                p.textContent = objWay.end
+                p.classList.add('text-win')
+                container.append(p)
+                input.maxLength = 0
+                setTimeout(() => {
+                    container.remove()
+                    textStart.textContent = textStartLvl
+                }, 3000)
             }
+
         }
-
-
-        function textColorNull() {
-            for (let i = 0; i < input.value.length; i++) {
-                textStart.children[i].style.color = ''
-            }
-        }
-
-        function textColorRedDelete() {
-            for (let i = 0; i < textStart.children.length; i++) {
-                if (textStart.children[i].style.color === 'red')
-                    textStart.children[i].style.color = ''
-            }
-        }
-
-        function showEnd() {
-            input.value = ''
-            textStart.innerHTML = ''
-
-            let main = document.querySelector('.main')
-            let container = document.createElement('div')
-            container.classList.add('container')
-            container.classList.add('container-win')
-            main.append(container)
-
-            let p = document.createElement('p')
-            p.textContent = objWay.end
-            p.classList.add('text-win')
-            container.append(p)
-            input.maxLength = 0
-            setTimeout(() => {
-                container.remove()
-                textStart.textContent = textStartLvl
-            }, 3000)
-        }
-
 
         // keydown
         // function textColorNull() {
@@ -399,6 +453,7 @@ function animate() {
 
 
         }
+
         // changeTextColor 
         // Заменил object на function, что внизу (можно удалить)
         // function textColorRed() {
@@ -411,7 +466,6 @@ function animate() {
         //         textStart.children[i].style.color = 'blue'
         //     }
         // }
-
         const changeTextColor = {
             blue: () => {
                 for (let i = 0; i < input.value.length; i++) {
