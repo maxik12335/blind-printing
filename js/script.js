@@ -547,7 +547,7 @@ document.querySelector('.messenge-btn').addEventListener('click', () => {
     }
 })
 
-document.addEventListener('touchstart', (event) => {
+document.addEventListener('touchmove', (event) => {
     if (event.touches.length > 1) {
         event.preventDefault()
     }
