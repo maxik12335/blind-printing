@@ -32,6 +32,10 @@ body, html {
     background-color: white;
 }
 
+.timer-conitaner {
+    color: white;
+}
+
 input {
     font-family: system-ui;
 }
@@ -224,26 +228,6 @@ input {
     -moz-box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.75);
     box-shadow: 0px 0px 20px 0px rgba(73, 73, 73, 0.945);
 }
-
-/* .container-messenge-rules {
-    display: flex;
-    justify-content: space-between;
-}
-
-.messenge-rules-box {
-    width: 50%;
-}
-
-.messenge-rules-box:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.messenge-rules-heading {
-    font-size: 50px;
-    margin-bottom: 0;
-} */
 
 .btn:focus-visible {
     outline: none;

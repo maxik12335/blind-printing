@@ -46,8 +46,10 @@ let main = document.querySelector('.main'),
 <div class="text-box">
 <p class="text">Выбери свой уровень, нажав на кнопку выше</p>
 </div>
-`
-
+`,
+    count = 0,
+    dateStart,
+    dateEnd
 // start ---------
 mainRender()
 
@@ -97,14 +99,9 @@ function btnAddEventListener() {
 
 function animate() {
     if (document.querySelector('.main-container')) {
-
         let input = document.querySelector('input'),
             textStart = document.querySelector('.text'), // text
             textStartLvl = 'Выбери свой уровень, нажав на кнопку выше'
-
-        let objWay = {
-            end: 'Отлично ! Текст набран'
-        }
 
         // Levels: lite, middle, hard
         let objText = {
@@ -254,7 +251,13 @@ function animate() {
             }
         })
 
-        input.addEventListener('input', () => {
+        input.addEventListener('input', (event) => {
+            // timer.timerStart()
+            if (count < 1) {
+                count++
+                dateStart = Date.parse(new Date)
+            }
+
             keydown.addEventListenerKeydown()
             if (input.value.length == textStart.children.length && input.value != '') {
                 othersFunction.showEnd()
@@ -390,22 +393,26 @@ function animate() {
             showEnd: () => {
                 input.value = ''
                 textStart.innerHTML = ''
+                input.maxLength = 0
 
-                let main = document.querySelector('.main')
-                let container = document.createElement('div')
-                container.classList.add('container')
-                container.classList.add('container-win')
+                let main = document.querySelector('.main'),
+                    container = document.createElement('div')
+                container.classList.add('container', 'container-win')
                 main.append(container)
 
                 let p = document.createElement('p')
-                p.textContent = objWay.end
                 p.classList.add('text-win')
                 container.append(p)
-                input.maxLength = 0
+                dateEnd = Date.parse(new Date)
+                p.textContent = 'Ваше результат ' + ((dateEnd - dateStart) / 1000) + ' сек.'
+
                 setTimeout(() => {
                     container.remove()
                     textStart.textContent = textStartLvl
-                }, 3000)
+                    console.log(dateEnd - dateStart)
+                    dateStart = 0
+                    count = 0
+                }, 5000)
             }
 
         }
@@ -453,8 +460,6 @@ function animate() {
                         textStart.children[i].style.color = ''
                 }
             }
-
-
         }
 
         // changeTextColor 
@@ -481,10 +486,25 @@ function animate() {
             }
         }
 
-
+        const timer = {
+            timerCreate: () => {
+                let container = document.createElement('div')
+                container.classList.add('container', 'timer-conitaner')
+                main.append(container)
+                container.textContent = 'time'
+            },
+            timerStart: () => {
+                let startTime = new Date()
+                setTimeout(() => {
+                    let endTime = new Date()
+                    console.log(endTime.getSeconds() - startTime.getSeconds())
+                }, 1000)
+            }
+        }
     }
 
 }
+
 
 //  jQuery zoom
 // $.mobile.zoom.enable();
