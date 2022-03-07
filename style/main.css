@@ -52,9 +52,9 @@ input {
     border-radius: 4px;
 }
 
-.input-box input:focus-visible {
+.input-box input:focus-visible,
+.input-box input:focus {
     outline: none;
-    border: none;
 }
 
 .space {
