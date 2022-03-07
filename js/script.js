@@ -161,6 +161,10 @@ function animate() {
 
         // addEventListener input
         input.addEventListener('click', () => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2e5119e432a64057771cbcaf67ca3f5076c4cf29
             if (textStart.textContent == textStartLvl) {
 
                 const animateTextPromise = new Promise((resolve, reject) => {
@@ -252,6 +256,7 @@ function animate() {
 
         input.addEventListener('input', () => {
             keydown.addEventListenerKeydown()
+
             if (input.value.length == textStart.children.length && input.value != '') {
                 showEnd()
             }
@@ -314,6 +319,20 @@ function animate() {
                 if (arrayNewText[i] === ' ') {
                     textStart.children[i - 1].classList.add('space')
                 }
+            }
+        }
+
+
+        function textColorNull() {
+            for (let i = 0; i < input.value.length; i++) {
+                textStart.children[i].style.color = ''
+            }
+        }
+
+        function textColorRedDelete() {
+            for (let i = 0; i < textStart.children.length; i++) {
+                if (textStart.children[i].style.color === 'red')
+                    textStart.children[i].style.color = ''
             }
         }
 
@@ -383,6 +402,7 @@ function animate() {
                 }
             }
 
+
         }
         // changeTextColor 
         // Заменил object на function, что внизу (можно удалить)
@@ -396,6 +416,7 @@ function animate() {
         //         textStart.children[i].style.color = 'blue'
         //     }
         // }
+
         const changeTextColor = {
             blue: () => {
                 for (let i = 0; i < input.value.length; i++) {
@@ -407,6 +428,8 @@ function animate() {
                 textStart.children[input.value.length].style.color = 'red'
             }
         }
+
+
     }
 
 }
