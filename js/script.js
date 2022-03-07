@@ -65,12 +65,14 @@ function mainRender() {
         document.querySelector('.main-container').remove()
     }
 
-    let cont = document.createElement('div')
-    cont.classList.add('container', 'container-messenge-rules')
-    main.prepend(cont)
-    cont.innerHTML = mainText
+    if (document.querySelectorAll('.container-messenge-rules').length < 1) {
+        let cont = document.createElement('div')
+        cont.classList.add('container', 'container-messenge-rules')
+        main.prepend(cont)
+        cont.innerHTML = mainText
 
-    btnPage = document.querySelector('.messenge-btn')
+        btnPage = document.querySelector('.messenge-btn')
+    }
 }
 
 function gymRender() {
@@ -78,10 +80,12 @@ function gymRender() {
         document.querySelector('.container-messenge-rules').remove()
     }
 
-    let cont = document.createElement('div')
-    cont.classList.add('container', 'main-container')
-    main.prepend(cont)
-    cont.innerHTML = gymContent
+    if (document.querySelectorAll('.main-container').length < 1) {
+        let cont = document.createElement('div')
+        cont.classList.add('container', 'main-container')
+        main.prepend(cont)
+        cont.innerHTML = gymContent
+    }
 }
 
 function btnAddEventListener() {
