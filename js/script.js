@@ -547,7 +547,14 @@ document.querySelector('.messenge-btn').addEventListener('click', () => {
     }
 })
 
+document.addEventListener('touchstart', (event) => {
+    if (event.touches.length > 1) {
+        event.preventDefault()
+    }
+})
+
 $.mobile.zoom.enable();
+
 // $("input[type=text], textarea").mouseover(zoomDisable).mousedown(zoomEnable);
 // function zoomDisable() {
 //     $('head meta[name=viewport]').remove();
