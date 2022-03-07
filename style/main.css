@@ -145,6 +145,11 @@ input {
     height: 42px;
 }
 
+.box-messager:nth-child(2) {
+    width: 38px;
+    height: 38px;
+}
+
 .link-messager {
     position:absolute;
     left: 0;
